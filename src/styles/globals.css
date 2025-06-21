@@ -1,0 +1,164 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Borel&family=Condiment&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 14px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  width: fit-content;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #add8e6;
+  background-image: linear-gradient(315deg, #99d6ff 0%, #66c2ff 74%);
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #add8e6; /* Keep the same background */
+  background-image: linear-gradient(315deg, #99d6ff 0%, #66c2ff 74%);
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link.dark:text-black {
+  color: #fff;  
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  width: 100%;
+  height: 3px;
+  border-radius: 2rem;
+  background: rgb(65,105,225);
+  background: linear-gradient(159deg, rgba(65,105,225,1) 0%, rgba(137,207,240,1) 100%);
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1); 
+}
+
+nav {
+  backdrop-filter: none;
+  background-color: transparent;
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+}
+.blur-overlay {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+}
+
+.dark .blur-overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Dark theme */
+}
+
+.blur-overlay.hidden {
+  backdrop-filter: none;
+  background-color: transparent;
+}
+
+/* Make sure sidebar z-index is higher than blur-overlay */
+.fixed.top-2.right-1.bottom-0.w-\[320px\] {  /* Adjust selector for your sidebar */
+  z-index: 40;
+}
+
+.contact-container {
+  max-width: 40rem;
+  position: relative;
+  z-index: 10;
+  padding: 0 2.5rem;
+  margin-top: 2rem;
+}
+
+.field-label {
+  font-size: 1.125rem;
+  color: #f2f2f2;
+}
+
+.field-input {
+  width: 100%;
+  background-color: #333333;
+  padding: 0.5rem 1.25rem; 
+  min-height: 3.5rem; 
+  border-radius: 0.5rem; 
+  color: #e5e5e5; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
+  outline: none;
+}
+
+.field-input::placeholder {
+  color: #737373; 
+}
+
+.field-btn {
+  background-color: #1a1a1a; 
+  padding: 0.5rem 1.25rem; 
+  min-height: 3rem; 
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  font-size: 1.125rem;
+  color: #ffffff;
+  gap: 0.75rem;
+}
+
+.field-btn:hover {
+  background: rgb(30,144,255);
+  background: linear-gradient(159deg, rgba(30,144,255,1) 0%, rgba(153,186,221,1) 100%); 
+}
+
+.field-btn_arrow {
+  width: 0.625rem; 
+  height: 0.625rem; 
+  object-fit: contain;
+  filter: invert(1) brightness(0);
+}
