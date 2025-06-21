@@ -4,24 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -104,61 +86,11 @@ nav {
   background-color: transparent;
 }
 
-/* Make sure sidebar z-index is higher than blur-overlay */
-.fixed.top-2.right-1.bottom-0.w-\[320px\] {  /* Adjust selector for your sidebar */
-  z-index: 40;
-}
-
-.contact-container {
-  max-width: 40rem;
-  position: relative;
-  z-index: 10;
-  padding: 0 2.5rem;
-  margin-top: 2rem;
-}
-
-.field-label {
-  font-size: 1.125rem;
-  color: #f2f2f2;
-}
-
-.field-input {
-  width: 100%;
-  background-color: #333333;
-  padding: 0.5rem 1.25rem; 
-  min-height: 3.5rem; 
-  border-radius: 0.5rem; 
-  color: #e5e5e5; 
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
-  outline: none;
-}
-
-.field-input::placeholder {
-  color: #737373; 
-}
-
-.field-btn {
-  background-color: #1a1a1a; 
-  padding: 0.5rem 1.25rem; 
-  min-height: 3rem; 
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  font-size: 1.125rem;
-  color: #ffffff;
-  gap: 0.75rem;
-}
-
-.field-btn:hover {
-  background: rgb(30,144,255);
-  background: linear-gradient(159deg, rgba(30,144,255,1) 0%, rgba(153,186,221,1) 100%); 
-}
-
-.field-btn_arrow {
-  width: 0.625rem; 
-  height: 0.625rem; 
-  object-fit: contain;
-  filter: invert(1) brightness(0);
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

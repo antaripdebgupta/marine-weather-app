@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import Header from '@/components/shared/Header';
+import Footer from '@/components/shared/Footer';
 
 export const metadata = {
   title: 'Marine Forecast',
@@ -9,7 +11,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="custom-scrollbar">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
