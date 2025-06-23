@@ -1,10 +1,10 @@
 export const currentConditions = [
-  { label: 'Wave Height', unit: 'm' },
-  { label: 'Wave Direction', unit: '°' },
-  { label: 'Sea Surface Temp', unit: '°C' },
-  { label: 'Ocean Current', unit: 'km/h' },
-  { label: 'Wind Wave Height', unit: 'm' },
-  { label: 'Swell Wave Period', unit: 's' },
+  { label: 'Wave Height', key: 'wave_height', unit: 'm' },
+  { label: 'Wave Direction', key: 'wave_direction', unit: '°' },
+  { label: 'Sea Surface Temp', key: 'sea_surface_temperature', unit: '°C' },
+  { label: 'Ocean Current Velocity', key: 'ocean_current_velocity', unit: 'm/s' },
+  { label: 'Wind Wave Height', key: 'wind_wave_height', unit: 'm' },
+  { label: 'Swell Wave Period', key: 'swell_wave_period', unit: 's' },
 ];
 
 export const dailySummary = [
