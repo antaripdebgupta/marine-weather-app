@@ -1,4 +1,4 @@
-import { MARINE_API_BASE, WEATHER_PARAMS, DEFAULT_LOCATION } from './constants';
+import { MARINE_API_BASE, WEATHER_PARAMS, DEFAULT_LOCATION, DAILY_PARAMS } from './constants';
 
 export const fetchMarineData = async (lat, long, fallback = false) => {
   try {
@@ -20,6 +20,32 @@ export const fetchMarineData = async (lat, long, fallback = false) => {
     if (hasNull && !fallback) {
       //console.warn('Some data is null — retrying with default location...');
       return await fetchMarineData(DEFAULT_LOCATION.lat, DEFAULT_LOCATION.long, true);
+    }
+
+    return data;
+  } catch (error) {
+    console.error('API error:', error);
+    return null;
+  }
+};
+
+export const fetchDailyData = async (lat, long, fallback = false) => {
+  try {
+    const url = `${MARINE_API_BASE}?latitude=${lat}&longitude=${long}&daily=${DAILY_PARAMS}`;
+    const response = await fetch(url);
+    const result = await response.json();
+
+    const data = {
+      wave_height_max: result.daily?.wave_height_max?.[0],
+      wave_direction_dominant: result.daily?.wave_direction_dominant?.[0],
+      swell_wave_period_max: result.daily?.swell_wave_period_max?.[0],
+    };
+
+    const hasNull = Object.values(data).some((val) => val == null);
+
+    if (hasNull && !fallback) {
+      console.warn('Some data is null — retrying with default location...');
+      return await fetchDailyData(DEFAULT_LOCATION.lat, DEFAULT_LOCATION.long, true);
     }
 
     return data;

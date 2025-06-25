@@ -8,9 +8,9 @@ export const currentConditions = [
 ];
 
 export const dailySummary = [
-  { label: 'Max Wave Height', unit: 'm' },
-  { label: 'Dominant Wave Direction', unit: '°' },
-  { label: 'Max Swell Period', unit: 's' },
+  { label: 'Max Wave Height', key: 'wave_height_max', unit: 'm' },
+  { label: 'Dominant Wave Direction', key: 'wave_direction_dominant', unit: '°' },
+  { label: 'Max Swell Period', key: 'swell_wave_period_max', unit: 's' },
 ];
 
 export const tableHeaders = [

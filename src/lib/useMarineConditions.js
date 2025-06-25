@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getUserLocation, fetchMarineData } from '@/api';
+import { getUserLocation, fetchMarineData, fetchDailyData } from '@/api';
 
 export function useMarineConditions() {
   const [conditions, setConditions] = useState({
@@ -15,6 +15,27 @@ export function useMarineConditions() {
     const loadConditions = async () => {
       const { lat, long } = await getUserLocation();
       const data = await fetchMarineData(lat, long);
+      if (data) setConditions(data);
+      console.log(data);
+    };
+
+    loadConditions();
+  }, []);
+
+  return conditions;
+}
+
+export function useDailyConditions() {
+  const [conditions, setConditions] = useState({
+    wave_height_max: null,
+    wave_direction_dominant: null,
+    swell_wave_period_max: null,
+  });
+
+  useEffect(() => {
+    const loadConditions = async () => {
+      const { lat, long } = await getUserLocation();
+      const data = await fetchDailyData(lat, long);
       if (data) setConditions(data);
     };
 

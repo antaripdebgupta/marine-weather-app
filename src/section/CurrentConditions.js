@@ -11,10 +11,11 @@ import {
   TableCell,
 } from '@/components/ui/table';
 import { currentConditions, dailySummary, tableHeaders, hourlyData } from '@/lib/data';
-import { useMarineConditions } from '@/lib/useMarineConditions';
+import { useMarineConditions, useDailyConditions } from '@/lib/useMarineConditions';
 
 export default function CurrentConditions() {
   const conditions = useMarineConditions();
+  const dailyConditions = useDailyConditions();
 
   return (
     <section className="min-h-screen pt-36 text-gray-900">
@@ -76,7 +77,8 @@ export default function CurrentConditions() {
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-lg font-bold">
-                    -- <span className="text-sm text-gray-600">{item.unit}</span>
+                    {dailyConditions[item.key] !== null ? dailyConditions[item.key] : '--'}{' '}
+                    <span className="text-sm text-gray-600">{item.unit}</span>
                   </p>
                 </CardContent>
               </Card>

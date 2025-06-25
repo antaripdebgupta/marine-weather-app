@@ -13,3 +13,9 @@ export const WEATHER_PARAMS = [
   'swell_wave_period',
   'ocean_current_velocity',
 ].join(',');
+
+export const DAILY_PARAMS = [
+  'wave_height_max',
+  'wave_direction_dominant',
+  'swell_wave_period_max',
+].join(',');
