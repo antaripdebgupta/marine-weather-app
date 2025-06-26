@@ -20,13 +20,3 @@ export const tableHeaders = [
   'Swell Wave (m)',
   'Current (km/h)',
 ];
-
-export const hourlyData = [
-  {
-    time: '12:00',
-    waveHeight: '--',
-    windWave: '--',
-    swellWave: '--',
-    current: '--',
-  },
-];

@@ -10,12 +10,17 @@ import {
   TableHead,
   TableCell,
 } from '@/components/ui/table';
-import { currentConditions, dailySummary, tableHeaders, hourlyData } from '@/lib/data';
-import { useMarineConditions, useDailyConditions } from '@/lib/useMarineConditions';
+import { currentConditions, dailySummary, tableHeaders } from '@/lib/data';
+import {
+  useMarineConditions,
+  useDailyConditions,
+  useHourlyConditions,
+} from '@/lib/useMarineConditions';
 
 export default function CurrentConditions() {
   const conditions = useMarineConditions();
   const dailyConditions = useDailyConditions();
+  const hourlyData = useHourlyConditions();
 
   return (
     <section className="min-h-screen pt-36 text-gray-900">
@@ -53,15 +58,23 @@ export default function CurrentConditions() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {hourlyData.map((row, i) => (
-                  <TableRow key={i}>
-                    <TableCell>{row.time}</TableCell>
-                    <TableCell>{row.waveHeight}</TableCell>
-                    <TableCell>{row.windWave}</TableCell>
-                    <TableCell>{row.swellWave}</TableCell>
-                    <TableCell>{row.current}</TableCell>
+                {hourlyData.length > 0 ? (
+                  hourlyData.map((row, i) => (
+                    <TableRow key={i}>
+                      <TableCell>{row.time}</TableCell>
+                      <TableCell>{row.waveHeight}</TableCell>
+                      <TableCell>{row.windWave}</TableCell>
+                      <TableCell>{row.swellWave}</TableCell>
+                      <TableCell>{row.current}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center text-gray-500">
+                      Loading hourly forecast...
+                    </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </div>

@@ -19,3 +19,10 @@ export const DAILY_PARAMS = [
   'wave_direction_dominant',
   'swell_wave_period_max',
 ].join(',');
+
+export const HOURLY_PARAMS = [
+  'wave_height',
+  'wind_wave_height',
+  'swell_wave_height',
+  'ocean_current_velocity',
+].join(',');
