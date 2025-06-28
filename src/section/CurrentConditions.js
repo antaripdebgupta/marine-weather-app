@@ -15,7 +15,7 @@ import {
   useMarineConditions,
   useDailyConditions,
   useHourlyConditions,
-} from '@/lib/useMarineConditions';
+} from '@/hooks/useMarineConditions';
 
 export default function CurrentConditions() {
   const conditions = useMarineConditions();
