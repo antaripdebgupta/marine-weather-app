@@ -14,15 +14,17 @@ const fetchData = async (url, dataExtractor, fallback, fallbackFn) => {
     const result = await response.json();
     const data = dataExtractor(result);
 
-    const hasNull = Array.isArray(data)
-      ? data.some((item) => Object.values(item).some((val) => val == null))
-      : Object.values(data).some((val) => val == null);
+    if (data) {
+      const hasNull = Array.isArray(data)
+        ? data.some((item) => Object.values(item).some((val) => val == null))
+        : Object.values(data).some((val) => val == null);
 
-    if (hasNull && !fallback) {
-      return await fallbackFn(DEFAULT_LOCATION.lat, DEFAULT_LOCATION.long, true);
+      if (hasNull && !fallback) {
+        return await fallbackFn(DEFAULT_LOCATION.lat, DEFAULT_LOCATION.long, true);
+      }
     }
 
-    return data;
+    return data || (Array.isArray(data) ? [] : null);
   } catch (error) {
     console.error('API error:', error);
     return Array.isArray(data) ? [] : null;
