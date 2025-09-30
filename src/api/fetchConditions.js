@@ -27,7 +27,11 @@ const fetchData = async (url, dataExtractor, fallback, fallbackFn) => {
     return data || (Array.isArray(data) ? [] : null);
   } catch (error) {
     console.error('API error:', error);
-    return Array.isArray(data) ? [] : null;
+
+    if (fallbackFn === fetchHourlyData) {
+      return [];
+    }
+    return null;
   }
 };
 
